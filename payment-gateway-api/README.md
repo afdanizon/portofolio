@@ -38,3 +38,9 @@ Settlement
   "amount": 150000,
   "currency": "IDR"
 }
+
+{
+  "responseCode": "00",
+  "status": "PAID",
+  "description": "Transaction was successful."
+}
