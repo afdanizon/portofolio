@@ -16,62 +16,27 @@ This project is created as a portfolio example and does not represent any produc
 
 ## 🔄 Payment Flow
 
-The payment lifecycle follows this general flow:
-
-    Create Payment
-          │
-          ▼
-    Authentication
-          │
-          ▼
-    Payment Processing
-          │
-          ▼
-    Transaction Status
-          │
-          ▼
-    Callback
-          │
-          ▼
-    Settlement
+```mermaid
+flowchart TD
+    A[Create Payment] --> B[Authentication]
+    B --> C[Payment Processing]
+    C --> D[Transaction Status]
+    D --> E[Callback]
+    E --> F[Settlement]
+```
 
 ---
 
 ## 🏗️ High-Level Architecture
 
-    ┌─────────────┐
-    │  Customer   │
-    └──────┬──────┘
-           │
-           ▼
-    ┌─────────────┐
-    │  Merchant   │
-    └──────┬──────┘
-           │
-           │ Payment Request
-           ▼
-    ┌─────────────────────┐
-    │   Payment Gateway   │
-    └──────────┬──────────┘
-               │
-               │ Payment Processing
-               ▼
-    ┌─────────────────────┐
-    │ Payment Provider /  │
-    │       Bank          │
-    └──────────┬──────────┘
-               │
-               │ Transaction Result
-               ▼
-    ┌─────────────────────┐
-    │   Payment Gateway   │
-    └──────────┬──────────┘
-               │
-               │ Callback
-               ▼
-    ┌─────────────┐
-    │  Merchant   │
-    └─────────────┘
+```mermaid
+flowchart LR
+    C[Customer] --> M[Merchant]
+    M -->|Payment Request| G[Payment Gateway]
+    G -->|Payment Processing| P[Payment Provider / Bank]
+    P -->|Transaction Result| G
+    G -->|Callback| M
+```
 
 ---
 
@@ -81,22 +46,26 @@ The merchant sends a payment request to the payment gateway.
 
 ### Example Request
 
-    {
-      "merchantId": "DEMO001",
-      "orderId": "ORDER-001",
-      "amount": 150000,
-      "currency": "IDR"
-    }
+```json
+{
+  "merchantId": "DEMO001",
+  "orderId": "ORDER-001",
+  "amount": 150000,
+  "currency": "IDR"
+}
+```
 
 ### Example Response
 
-    {
-      "responseCode": "00",
-      "status": "PENDING",
-      "description": "Payment request has been accepted."
-    }
+```json
+{
+  "responseCode": "00",
+  "status": "PENDING",
+  "description": "Payment request has been accepted."
+}
+```
 
-The PENDING status indicates that the payment request has been accepted and is still being processed.
+The `PENDING` status indicates that the payment request has been accepted and is still being processed.
 
 ---
 
@@ -106,23 +75,15 @@ Some payment methods require customer authentication before the transaction can 
 
 ### Authentication Flow
 
-    Create Payment
-          │
-          ▼
-    Generate Authentication Session
-          │
-          ▼
-    Customer Authentication
-          │
-          ▼
-    Authentication Result
-          │
-          ├───────────────┐
-          ▼               ▼
-       SUCCESS          FAILED
-          │
-          ▼
-    Continue Payment
+```mermaid
+flowchart TD
+    A[Create Payment] --> B[Generate Authentication Session]
+    B --> C[Customer Authentication]
+    C --> D{Authentication Result}
+    D -->|SUCCESS| E[Continue Payment]
+    D -->|FAILED| F[Authentication Failed]
+    D -->|EXPIRED| G[Authentication Expired]
+```
 
 Possible authentication results:
 
@@ -148,21 +109,14 @@ A payment transaction can have several states.
 
 ### Simplified Transaction State
 
-    ┌──────────────┐
-    │   PENDING    │
-    └──────┬───────┘
-           │
-    ┌──────┼──────────┐
-    │      │          │
-    ▼      ▼          ▼
- ┌──────┐ ┌────────┐ ┌─────────┐
- │ PAID │ │ FAILED │ │ EXPIRED │
- └──┬───┘ └────────┘ └─────────┘
-    │
-    ▼
- ┌──────────┐
- │ REFUNDED │
- └──────────┘
+```mermaid
+stateDiagram-v2
+    [*] --> PENDING
+    PENDING --> PAID
+    PENDING --> FAILED
+    PENDING --> EXPIRED
+    PAID --> REFUNDED
+```
 
 ---
 
@@ -172,13 +126,15 @@ After the payment provider processes the transaction, the payment gateway can se
 
 ### Example Callback
 
-    {
-      "orderId": "ORDER-001",
-      "status": "PAID",
-      "amount": 150000,
-      "currency": "IDR",
-      "transactionId": "TXN-001"
-    }
+```json
+{
+  "orderId": "ORDER-001",
+  "status": "PAID",
+  "amount": 150000,
+  "currency": "IDR",
+  "transactionId": "TXN-001"
+}
+```
 
 The merchant can use the callback to update the customer's order status.
 
@@ -201,11 +157,13 @@ Examples:
 
 ### Example Error Response
 
-    {
-      "responseCode": "AUTH_01",
-      "status": "EXPIRED",
-      "description": "Authentication session has expired."
-    }
+```json
+{
+  "responseCode": "AUTH_01",
+  "status": "EXPIRED",
+  "description": "Authentication session has expired."
+}
+```
 
 ---
 
@@ -215,23 +173,13 @@ Payment systems should prevent duplicate transaction processing.
 
 For example, if the same payment request is submitted multiple times, the system should identify the existing transaction instead of creating an unintended duplicate payment.
 
-Example:
-
-    Request #1
-        │
-        ▼
-    Create Transaction
-        │
-        ▼
-    ORDER-001
-
-    Request #2
-        │
-        ▼
-    Same Order ID
-        │
-        ▼
-    Return Existing Transaction
+```mermaid
+flowchart TD
+    A[Payment Request] --> B{Existing Order ID?}
+    B -->|No| C[Create Transaction]
+    B -->|Yes| D[Return Existing Transaction]
+    C --> E[ORDER-001]
+```
 
 ---
 
@@ -241,23 +189,18 @@ Callbacks may sometimes be delivered more than once.
 
 The system should validate the transaction before updating its final state.
 
-Example:
+```mermaid
+sequenceDiagram
+    participant PG as Payment Gateway
+    participant M as Merchant
 
-    Callback #1
-        │
-        ▼
-    Transaction = PENDING
-        │
-        ▼
-    Update → PAID
+    PG->>M: Callback #1 - PAID
+    M->>M: Update transaction to PAID
 
-    Callback #2
-        │
-        ▼
-    Transaction already PAID
-        │
-        ▼
-    Ignore duplicate update
+    PG->>M: Callback #2 - PAID
+    M->>M: Check current transaction status
+    M-->>PG: Duplicate callback ignored
+```
 
 This helps prevent inconsistent transaction states.
 
@@ -267,26 +210,24 @@ This helps prevent inconsistent transaction states.
 
 A successful payment may be eligible for a refund depending on the payment product rules.
 
-Example flow:
+### Refund Flow
 
-    PAID
-      │
-      ▼
-    Refund Request
-      │
-      ▼
-    Refund Processing
-      │
-      ▼
-    REFUNDED
+```mermaid
+flowchart LR
+    A[PAID] --> B[Refund Request]
+    B --> C[Refund Processing]
+    C --> D[REFUNDED]
+```
 
 ### Example Response
 
-    {
-      "responseCode": "00",
-      "status": "REFUNDED",
-      "description": "Transaction has been refunded."
-    }
+```json
+{
+  "responseCode": "00",
+  "status": "REFUNDED",
+  "description": "Transaction has been refunded."
+}
+```
 
 ---
 
@@ -303,24 +244,16 @@ A settlement process may include:
 5. Settlement report
 6. Fund transfer
 
-Simplified flow:
+### Settlement Flow
 
-    PAID Transactions
-           │
-           ▼
-    Transaction Aggregation
-           │
-           ▼
-    Fee Calculation
-           │
-           ▼
-    Settlement Calculation
-           │
-           ▼
-    Settlement Report
-           │
-           ▼
-    Fund Transfer
+```mermaid
+flowchart TD
+    A[PAID Transactions] --> B[Transaction Aggregation]
+    B --> C[Fee Calculation]
+    C --> D[Settlement Calculation]
+    D --> E[Settlement Report]
+    E --> F[Fund Transfer]
+```
 
 ---
 
@@ -400,35 +333,15 @@ This portfolio project demonstrates knowledge of:
 
 ## 📌 Example Transaction Lifecycle
 
-    ┌─────────────┐
-    │   Request   │
-    └──────┬──────┘
-           │
-           ▼
-    ┌─────────────┐
-    │  PENDING    │
-    └──────┬──────┘
-           │
-           ▼
-    ┌─────────────┐
-    │AUTHENTICATE │
-    └──────┬──────┘
-           │
-           ▼
-    ┌─────────────┐
-    │  PROCESSING │
-    └──────┬──────┘
-           │
-           ├───────────────┐
-           ▼               ▼
-       ┌──────┐        ┌────────┐
-       │ PAID │        │ FAILED │
-       └──┬───┘        └────────┘
-          │
-          ▼
-     ┌──────────┐
-     │ REFUNDED │
-     └──────────┘
+```mermaid
+flowchart TD
+    A[Payment Request] --> B[PENDING]
+    B --> C[AUTHENTICATE]
+    C --> D[PROCESSING]
+    D --> E[PAID]
+    D --> F[FAILED]
+    E --> G[REFUNDED]
+```
 
 ---
 
