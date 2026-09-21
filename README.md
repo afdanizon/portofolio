@@ -1,103 +1,111 @@
 # 👋 Hi, I'm Afdanizon
 
-**Product Owner | Payment Gateway | Digital Payment | API Integration**
+### Product Owner | Payment Product | API Integration | Digital Payment
 
-I have 8+ years of experience in IT and digital transformation, with a focus on **payment products, API integration, and digital financial services**.
+I am a Product Owner with 8+ years of experience in IT and Digital Transformation, focusing on payment products, API integration, and digital financial services.
 
-Currently working on payment solutions involving:
-
-* 💳 Credit Card
-* 🏦 Direct Debit
-* 📱 E-Wallet
-* 🔗 Virtual Account
-* 🔌 Payment Gateway & API Integration
-
-## 🚀 What I Do
-
-### Product Management
-
-* Product Requirement Document (PRD)
-* User Story & Acceptance Criteria
-* Product Flow & Business Rules
-* Release Management
-* Stakeholder Management
-* API Documentation
-
-### Payment Technology
-
-* Payment Gateway
-* Direct Debit
-* Credit Card
-* E-Wallet
-* Virtual Account
-* Mastercard / Cybersource Integration
-* Payment Authentication & OTP
-* Callback & Transaction Status Handling
-
-### Technical Skills
-
-* REST API
-* API Testing
-* SQL
-* MySQL
-* PostgreSQL
-* Oracle
-* Kibana
-* Splunk
-* Linux
-* Kafka
-
-## 📂 Featured Projects
-
-### 💳 Payment Gateway API
-
-Documentation and simulation of a payment gateway flow including:
-
-`Create Payment → Authentication → Authorization → Callback → Settlement`
-
-### 🔐 Payment Authentication Flow
-
-Example implementation of:
-
-`Payment → OTP → Authentication → Payment → Callback`
-
-Including session binding, OTP expiration, and transaction status handling.
-
-### 📊 Transaction Monitoring
-
-Example SQL queries and monitoring scenarios for analyzing:
-
-* Transaction status
-* Failed transactions
-* Pending transactions
-* Callback issues
-* Payment reconciliation
-
-## 📚 Documentation
-
-I enjoy turning complex technical requirements into clear and usable documentation for:
-
-* Developers
-* QA
-* Operations
-* Business
-* External Partners
-
-## 🎯 Currently Learning
-
-* System Design
-* Payment Architecture
-* API Design
-* Cloud Technology
-* Data & Analytics
-* Product Management
+My experience includes working with payment flows, banking integrations, authentication, transaction processing, and technical product documentation.
 
 ---
 
-### 📫 Let's Connect
+## 💳 Payment Experience
 
-I'm interested in connecting with people working in:
+- Credit Card Payment
+- Direct Debit
+- E-Wallet
+- Virtual Account
+- Payment Gateway
+- Payment Authentication
+- OTP & Session Management
+- Transaction Callback
+- Refund & Settlement
 
-**Fintech · Payment · Digital Banking · Product Management · API · Technology**
+---
 
-⭐ Feel free to explore my repositories.
+## 🧩 Product Management
+
+- Product Requirement Document (PRD)
+- User Story
+- Acceptance Criteria
+- Business Rules
+- Product Flow
+- API Documentation
+- Release Management
+- Stakeholder Management
+- Technical Requirement
+
+---
+
+## 🔌 Technical Knowledge
+
+| Area | Tools / Technology |
+|---|---|
+| API | REST API, JSON |
+| Database | MySQL, PostgreSQL, Oracle |
+| Monitoring | Kibana, Splunk |
+| Messaging | Kafka |
+| OS | Linux |
+| API Testing | Postman |
+| Documentation | Swagger / OpenAPI |
+| Product | Jira |
+
+---
+
+## 🚀 Featured Projects
+
+### 💳 Payment Gateway API
+
+A simulated payment gateway demonstrating the lifecycle of a payment transaction.
+
+**Flow:**
+
+`Create Payment → Authentication → Authorization → Callback → Settlement`
+
+[View Project →](../payment-gateway-api)
+
+---
+
+### 🔐 Payment Authentication Flow
+
+Documentation and examples of OTP-based payment authentication, including session management and expiration handling.
+
+[View Project →](../payment-authentication-flow)
+
+---
+
+### 📊 Transaction Monitoring
+
+Examples of SQL queries, transaction monitoring scenarios, and troubleshooting approaches for payment systems.
+
+[View Project →](../transaction-monitoring)
+
+---
+
+### 📋 Product Management Portfolio
+
+Examples of PRD, User Story, Acceptance Criteria, Business Rules, and product documentation.
+
+[View Project →](../product-management-portfolio)
+
+---
+
+## 🧠 What I Like Working On
+
+- Payment Products
+- Fintech
+- API Integration
+- Digital Banking
+- Payment Architecture
+- Product Management
+- Technical Product Management
+
+---
+
+## 📫 Connect With Me
+
+- LinkedIn: **[Your LinkedIn]**
+- GitHub: **[Your GitHub]**
+
+---
+
+> Building products at the intersection of business, technology, and payments.
