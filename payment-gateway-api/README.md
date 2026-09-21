@@ -1,35 +1,72 @@
-
 # 💳 Payment Gateway API
 
-## Overview
+A simulated payment gateway portfolio project demonstrating a typical digital payment transaction lifecycle.
 
-A simulated payment gateway designed to demonstrate a typical payment transaction lifecycle.
+This project focuses on payment product concepts, API integration, transaction processing, authentication, callback handling, and settlement.
 
-## Payment Flow
+---
+
+## 🎯 Project Overview
+
+The purpose of this project is to demonstrate how a payment transaction can be designed and documented from the initial payment request until the final transaction status.
+
+The project is designed as a portfolio example and does not represent any production payment system.
+
+---
+
+## 🔄 Payment Flow
+
+The payment lifecycle in this project follows:
 
 Create Payment
 ↓
 Authentication
 ↓
-Authorization
-↓
-Callback
+Payment Processing
 ↓
 Transaction Status
 ↓
+Callback
+↓
 Settlement
 
-## Transaction Status
+---
 
-| Status | Description |
-|---|---|
-| PENDING | Transaction is still being processed |
-| PAID | Payment successfully completed |
-| FAILED | Payment failed |
-| EXPIRED | Payment session expired |
-| REFUNDED | Payment was refunded |
+## 🏗️ High-Level Architecture
 
-## Example Request
+Customer
+
+↓
+
+Merchant
+
+↓
+
+Payment Gateway
+
+↓
+
+Payment Provider / Bank
+
+↓
+
+Transaction Processing
+
+↓
+
+Callback
+
+↓
+
+Merchant
+
+---
+
+## 💰 Create Payment
+
+The merchant sends a payment request to the payment gateway.
+
+Example request:
 
 ```json
 {
@@ -39,12 +76,9 @@ Settlement
   "currency": "IDR"
 }
 
-
-## Example Response
-
-```json
+## Example response:
 {
   "responseCode": "00",
-  "status": "PAID",
-  "description": "Transaction was successful."
+  "status": "PENDING",
+  "description": "Payment request has been accepted."
 }
