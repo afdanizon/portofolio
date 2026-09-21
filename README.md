@@ -1,10 +1,10 @@
 # 👋 Hi, I'm Afdanizon
 
-### Product Owner | Payment Product | API Integration | Digital Payment
+## Product Owner | Payment Product | Fintech | API Integration
 
 I am a Product Owner with 8+ years of experience in IT and Digital Transformation, focusing on payment products, API integration, and digital financial services.
 
-My experience includes working with payment flows, banking integrations, authentication, transaction processing, and technical product documentation.
+My experience includes working with payment flows, banking integrations, authentication, transaction processing, API documentation, and technical product management.
 
 ---
 
@@ -32,79 +32,81 @@ My experience includes working with payment flows, banking integrations, authent
 - API Documentation
 - Release Management
 - Stakeholder Management
-- Technical Requirement
+- Technical Requirements
 
 ---
 
 ## 🔌 Technical Knowledge
 
-| Area | Tools / Technology |
+| Category | Tools / Technology |
 |---|---|
 | API | REST API, JSON |
 | Database | MySQL, PostgreSQL, Oracle |
 | Monitoring | Kibana, Splunk |
 | Messaging | Kafka |
-| OS | Linux |
+| Operating System | Linux |
 | API Testing | Postman |
 | Documentation | Swagger / OpenAPI |
-| Product | Jira |
+| Product Management | Jira |
 
 ---
 
 ## 🚀 Featured Projects
 
+My portfolio focuses on the intersection of product management, payment technology, and API integration.
+
 ### 💳 Payment Gateway API
 
-A simulated payment gateway demonstrating the lifecycle of a payment transaction.
+A simulated payment gateway demonstrating a typical payment transaction lifecycle.
 
 **Flow:**
 
-`Create Payment → Authentication → Authorization → Callback → Settlement`
-
-[View Project →](../payment-gateway-api)
+Create Payment → Authentication → Authorization → Callback → Settlement
 
 ---
 
 ### 🔐 Payment Authentication Flow
 
-Documentation and examples of OTP-based payment authentication, including session management and expiration handling.
-
-[View Project →](../payment-authentication-flow)
+Documentation and examples covering OTP authentication, session management, expiration handling, and authentication flow.
 
 ---
 
 ### 📊 Transaction Monitoring
 
-Examples of SQL queries, transaction monitoring scenarios, and troubleshooting approaches for payment systems.
-
-[View Project →](../transaction-monitoring)
+Examples of transaction monitoring, SQL queries, troubleshooting scenarios, and payment transaction analysis.
 
 ---
 
 ### 📋 Product Management Portfolio
 
-Examples of PRD, User Story, Acceptance Criteria, Business Rules, and product documentation.
-
-[View Project →](../product-management-portfolio)
+Examples of PRD, User Stories, Acceptance Criteria, Business Rules, product flows, and technical requirements.
 
 ---
 
-## 🧠 What I Like Working On
+### 🔌 Payment API Documentation
+
+Examples of payment API documentation including request, response, authentication, callback, error handling, and transaction status.
+
+---
+
+## 🧠 Areas of Interest
 
 - Payment Products
 - Fintech
+- Digital Payment
+- Payment Gateway
 - API Integration
 - Digital Banking
-- Payment Architecture
-- Product Management
 - Technical Product Management
+- Product Management
+- System & Payment Architecture
 
 ---
 
 ## 📫 Connect With Me
 
-- LinkedIn: **[Your LinkedIn]**
-- GitHub: **[Your GitHub]**
+- LinkedIn: Add your LinkedIn URL here
+- GitHub: Add your GitHub URL here
 
 ---
 
