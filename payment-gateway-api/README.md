@@ -38,7 +38,9 @@ Settlement
   "amount": 150000,
   "currency": "IDR"
 }
+## Example Response
 
+```json
 {
   "responseCode": "00",
   "status": "PAID",
